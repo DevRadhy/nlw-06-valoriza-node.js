@@ -1,5 +1,5 @@
 import { getCustomRepository } from "typeorm";
-import { UserRepository } from "../repositories/UserRepositories";
+import { UsersRepository } from "../repositories/UsersRepositories";
 
 interface IUserRequest {
   name: string;
@@ -9,13 +9,13 @@ interface IUserRequest {
 
 class CreateUserService {
   async execute({ name, email, admin }: IUserRequest) {
-    const userRepository = getCustomRepository(UserRepository);
+    const usersRepository = getCustomRepository(UsersRepository);
 
     if(!email) {
       throw new Error("Email invalid.");
     }
 
-    const userAlreadyExists = await userRepository.findOne({
+    const userAlreadyExists = await usersRepository.findOne({
       email,
     });
 
@@ -23,13 +23,13 @@ class CreateUserService {
       throw new Error("User already exists.");
     }
 
-    const user = userRepository.create({
+    const user = usersRepository.create({
       name,
       email,
       admin,
     });
 
-    await userRepository.save(user);
+    await usersRepository.save(user);
 
     return user;
   }
