@@ -1,5 +1,5 @@
-import { getCustomRepository } from "typeorm"
-import { ComplimentsRepository } from "../repositories/ComplimentsRepositories"
+import { getCustomRepository } from "typeorm";
+import { ComplimentsRepository } from "../repositories/ComplimentsRepositories";
 import { UsersRepository } from "../repositories/UsersRepositories";
 
 interface IComplimentRequest {
